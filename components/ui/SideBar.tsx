@@ -96,13 +96,13 @@ const SideBar = () => {
                 const response = await fetch(`/api/util/me`, {
                     headers: {
                         "Content-Type": "application/json",
-                    },
-                    cache: "no-cache",
+                    }
                 });
 
                 if (!response.ok) {
                     throw new Error("Failed to fetch data");
                 }
+                
 
                 const responseData = await response.json();
                 setImg(responseData?.user.image)
@@ -121,7 +121,7 @@ const SideBar = () => {
     }, []);
 
     return (
-        <div className=" py-3 pr-3 flex flex-col justify-between border-r rounded-xl h-full w-full " >
+        <div className=" py-3 pr-3 flex flex-col justify-between border-r border-y rounded-r-xl h-full w-full " >
             <div>
                 <div className=" p-4 " >
                     icon

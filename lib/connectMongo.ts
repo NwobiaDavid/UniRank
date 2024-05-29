@@ -1,3 +1,4 @@
+import { insertQuestions } from "@/constants/data";
 import mongoose from "mongoose";
 
 // Define the type of global object
@@ -26,6 +27,7 @@ async function connectToDB() {
     mongoose.set("strictQuery", true);
     cached.promise = await mongoose.connect(process.env.MONGO_URI || '');
     console.log("connected to mongoDB!");
+    await insertQuestions();
   }
 
   cached.conn = await cached.promise;

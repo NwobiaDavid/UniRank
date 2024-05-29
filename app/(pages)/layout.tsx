@@ -9,8 +9,8 @@ import ResSideBar from "@/components/ui/ResSideBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-    title: "Pallly | Profiles",
-    description: "Find your accountability partner",
+    title: "UniRank",
+    description: "",
 };
 
 
@@ -23,11 +23,11 @@ export default function RootLayout({
         <section>
                 <Provider>
                     <section className="flex flex-col justify-between xl:h-full h-screen " >
-                        <div className=" h-full flex-col xl:flex-row flex justify-between  " >
-                            <section className="w-[20%] z-40 fixed left-0 h-screen xl:flex hidden " >
+                        <div className=" h-full flex-col xl:flex-row flex  justify-between  " >
+                            <section className="w-[20%] z-40 top-[5vh] fixed left-0 h-[90vh] xl:flex hidden " >
                                 <SideBar />
                             </section>
-                            <section className=" xl:ml-[20%] mb-10 w-full xl:h-full h-[92%] xl:w-[80%] " >
+                            <section className=" xl:ml-[20%] mb-10 w-full xl:h-full h-screen xl:w-[80%] " >
                                 {children}
                             </section>
                             <section className=" border-t bg-white z-30 w-full flex xl:hidden h-[8%] fixed bottom-0 " >
