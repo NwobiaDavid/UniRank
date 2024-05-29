@@ -13,6 +13,7 @@ export const metadata = {
     description: "Find your accountability partner",
 };
 
+
 export default function RootLayout({
     children,
 }: {
@@ -20,13 +21,9 @@ export default function RootLayout({
 }) {
     return (
         <section>
-
                 <Provider>
                     <section className="flex flex-col justify-between xl:h-full h-screen " >
-                        <div className="fixed xl:h-full max-h-[8%] z-50 top-0 w-full " >
-                            {/* <DashNavbar /> */}
-                        </div>
-                        <div className=" mt-20 xl:h-full h-[92%] flex-col xl:flex-row flex justify-between  " >
+                        <div className=" h-full flex-col xl:flex-row flex justify-between  " >
                             <section className="w-[20%] z-40 fixed left-0 h-screen xl:flex hidden " >
                                 <SideBar />
                             </section>
@@ -40,7 +37,6 @@ export default function RootLayout({
                         </div>
                     </section>
                 </Provider>
-
         </section>
     );
 }
