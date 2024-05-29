@@ -1,8 +1,8 @@
+import connectToDB from "@/lib/connectMongo";
+import userModal from "@/lib/models/user";
 import NextAuth from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import GoogleProvider from "next-auth/providers/google";
-import userModal from "../../../../../utlis/model/user"
-import connectToDB from "../../../../../utlis/connectMongo";
 
 const handler = NextAuth({
   providers: [
@@ -47,9 +47,6 @@ const handler = NextAuth({
         return false;
       }
       return true;
-    },
-    async redirect({ baseUrl }) {
-      return `${baseUrl}/`;
     },
   },
 });
