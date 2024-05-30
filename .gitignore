@@ -27,10 +27,14 @@ yarn-error.log*
 
 # local env files
 .env*.local
+<<<<<<< HEAD
 *.env
 *.env.example
 *.env.local
 *.env.staging
+=======
+.env
+>>>>>>> 38c7138 (did some minor ui adjustment)
 
 # vercel
 .vercel

@@ -2,6 +2,7 @@
 "use client"
 
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -86,6 +87,16 @@ const Page = () => {
                                 value={university}
                                 type="text"
                             />
+                        </div>
+                    </div>
+
+                    <div className="mt-10">
+                        <div className="flex items-center justify-center ">
+                            <Image className=' w-[60px] h-[60px] rounded-full border ' width={60} height={60}  src={session?.data?.user?.image || ""} alt="profile pic" />
+                            <div className='' >
+                                <h2> {username}</h2>
+                                <h2> {university}</h2>
+                            </div>
                         </div>
                     </div>
                 </div>

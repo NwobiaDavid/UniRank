@@ -120,12 +120,16 @@ const SideBar = () => {
         getData();
     }, []);
 
+    // const handleSidebarToggle = async () => {
+
+    // }
+
     return (
-        <div className=" py-3 pr-3 flex flex-col justify-between border-r border-y rounded-r-xl h-full w-full " >
+        <div className=" py-3 bg-slate-500 text-white pr-3 flex flex-col justify-between border-r border-y rounded-r-xl h-full w-full " >
             <div>
-                <div className=" p-4 " >
+                <button  className=" p-4 " >
                     icon
-                </div>
+                </button>
 
                 <div>
                     {sidebarLinksone.map((link) => {
@@ -135,7 +139,7 @@ const SideBar = () => {
                         // if (link.route === '/profile') link.route = `${link.route}/${session?.user.}`;
                         return (
                             <Link key={link.label} href={link.route} >
-                                <div className={` px-3 py-5 mb-2 rounded-r-full text-center cursor-pointer duration-200 font-semibold ${isActive ? ' bg-[#8576FF] hover:bg-[#584bb8] text-white' : ' hover:bg-gray-300'}`}>
+                                <div className={` px-3 py-5 mb-2 rounded-r-full text-center cursor-pointer duration-200 font-semibold ${isActive ? ' bg-gray-400 text-gray-800 hover:bg-white hover:text-black' : ' hover:bg-gray-300 text-gray-700 '}`}>
                                     <div className="flex justify-center  ">
                                         <span className="text-2xl w-[30%] flex justify-end mr-2 ">{link.icon}</span>
                                         <p className=" max-lg:hidden flex tracking-wider w-[70%] ">  {link.label}</p>
@@ -151,26 +155,7 @@ const SideBar = () => {
             </div>
 
             <div>
-                {/* <div className="  " >
-                    <Link href="/profile/me">
-                        <div className={` px-3 py-4 mb-2 rounded-r-full text-center cursor-pointer  duration-200 font-semibold ${pathname.includes('/profile/') ? 'bg-[#8576FF] hover:bg-[#8576FF] text-white' : 'hover:bg-gray-300'}`}>
-                            <div className="flex justify-center  ">
-                                <span className="text-2xl mr-2 w-[30%] flex justify-end "><IoPersonOutline /></span>
-                                <p className=" max-lg:hidden tracking-wider flex w-[70%] ">Profile</p>
-                            </div>
-                        </div>
-                    </Link>
-                </div>
-                <div>
-                    <div className="pl-3" >
-                        <div className={` px-3 mb-2 w-full rounded-full text-center cursor-pointer duration-200 font-semibold ${session ? 'bg-[#ff7676] hover:bg-[#6d3636] text-white' : ''}`}>
-                            <div className="flex justify-center  ">
-                                {session ? <LogoutButton /> : null}
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-                <div className="flex relative w-full justify-center items-center items-center">
+                <div className="flex relative w-full justify-center text-black items-center">
                     {loading ? (
                         <div className="p-2 rounded-full flex items-center ">
                             <div>
@@ -189,7 +174,7 @@ const SideBar = () => {
                                     <Image className="rounded-full border w-[35px] h-[35px] xl:w-[50px] xl:h-[50px]" width={40} height={40} src={img} alt="profile pic" />
                                 </div>
                             )}
-                            <div className="ml-2 xl:block hidden">
+                            <div className="ml-2 px-4 xl:block hidden">
                                 <p className="font-semibold">{name}</p>
                                 <p className="xl:block opacity-75 hidden">{university}</p>
                             </div>

@@ -70,12 +70,12 @@ const ResultPage: React.FC = () => {
         return <div>Loading...</div>;
     }
     return (
-        <div>
+        <div className=' p-32 flex justify-center items-center' >
             {loading ? (
                 <div> loading</div >
             ) : (
-                <div className="p-4">
-                    <h1 className="text-3xl font-bold mb-4">Your Score: {score}</h1>
+                <div className="p-4 justify-center flex items-center flex-col ">
+                    <h1 className="text-3xl mb-7">Your Score: <span className="font-bold">{score}</span></h1>
                     <button
                         onClick={() => router.push('/home')}
                         className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700"

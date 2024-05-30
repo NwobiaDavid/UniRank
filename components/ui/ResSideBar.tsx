@@ -55,6 +55,7 @@ const ResSideBar = () => {
             label: "Leaderhip",
             icon: <MdExplore />
         },
+        
     ];
     return (
         <div className=" flex relative bg-white border-t p-3 h-full w-full justify-around items-center " >
@@ -78,19 +79,9 @@ const ResSideBar = () => {
                 );
             })}
 
-
-            <div className="absolute -top-[85px]  right-[10%] ">
-                <Link href={"/post"} >
-
-                    <div className={` p-6 z-[100] static rounded-full text-center cursor-pointer hover:bg-gray-300 duration-200 font-semibold bg-[#8576FF]`}>
-                        <div className="flex justify-center relative ">
-                            <span className="text-2xl xl:mr-2 "> <GrAdd /> </span>
-
-                        </div>
-                    </div>
-
-                </Link>
-            </div>
+<div>
+    profile
+</div>
         </div>
     )
 }
