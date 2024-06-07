@@ -56,9 +56,37 @@ const QuizPage: React.FC = () => {
     return () => clearInterval(timer);
   }, [timeRemaining]);
 
+
+  useEffect(() => {
+    // Request full-screen mode
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    }
+
+    // Detect if the user opens the developer tools
+    const detectDevTools = () => {
+      const threshold = 160;
+      const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+      const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+      if (widthThreshold || heightThreshold) {
+        localStorage.setItem('answers', JSON.stringify(answers));
+        localStorage.setItem('questions', JSON.stringify(questions));
+        router.push('/result');
+      }
+    };
+
+    window.addEventListener('resize', detectDevTools);
+
+    return () => {
+      window.removeEventListener('resize', detectDevTools);
+    };
+  }, [answers, questions, router]);
+
+  
   const handleOptionChange = (questionIndex: number, optionIndex: number) => {
     setAnswers({ ...answers, [questionIndex]: optionIndex });
   };
+
 
   const nextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
@@ -78,8 +106,7 @@ const QuizPage: React.FC = () => {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div className="p-4 flex flex-col h-[90dvh] justify-center items-center">
-
+    <div className="p-4 flex flex-col h-[90dvh] justify-center items-center no-select">
       <div className=' h-[10%] w-full flex justify-center items-center ' >
         <div className="border-b flex p-3 justify-between items-center xl:w-[90%] ">
           <div className="mb-4 text-lg font-semibold">Time Remaining: {timeRemaining} seconds</div>
