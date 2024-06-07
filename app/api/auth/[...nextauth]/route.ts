@@ -13,6 +13,7 @@ const handler = NextAuth({
   ],
   pages: {
     signIn: "/auth/signin",
+    signOut: "/",
   },
   callbacks: {
     async session({session, user}) {
@@ -20,13 +21,11 @@ const handler = NextAuth({
       try {
         const existingUser = await userModal.findOne({ email: session?.user?.email });
         if (!existingUser) {
-          const nameParts = session?.user?.name ? session?.user?.name.split(" ") : [];
-          const firstName = nameParts[0] || ' ';
-          const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : ' ';
+          // const nameParts = session?.user?.name ? session?.user?.name.split(" ") : [];
+          // const firstName = nameParts[0] || ' ';
+          // const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : ' ';
 
           await userModal.create({
-            firstName: firstName,
-            lastName: lastName,
             userName: session?.user?.name,
             email: session?.user?.email,
             image: session?.user?.image || "https://res.cloudinary.com/geekysrm/image/upload/v1542221619/default-user.png",

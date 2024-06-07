@@ -35,7 +35,6 @@ export default async function SignIn() {
             </div>
           );
         })}
-        
       </div>
     </div>
   );

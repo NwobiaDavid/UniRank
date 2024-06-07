@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Spinner } from '@nextui-org/spinner';
 
 type Question = {
   question: string;
@@ -71,7 +72,7 @@ const QuizPage: React.FC = () => {
   };
 
   if (questions.length === 0) {
-    return <div>Loading...</div>;
+    return <div className='text-center p-32' > <Spinner label="Loading..." color="default" labelColor="foreground"/> </div>;
   }
 
   const currentQuestion = questions[currentQuestionIndex];
@@ -80,21 +81,21 @@ const QuizPage: React.FC = () => {
     <div className="p-4 flex flex-col h-[90dvh] justify-center items-center">
 
       <div className=' h-[10%] w-full flex justify-center items-center ' >
-        <div className="border-b flex p-3 justify-around items-center xl:w-[50%] ">
+        <div className="border-b flex p-3 justify-between items-center xl:w-[90%] ">
           <div className="mb-4 text-lg font-semibold">Time Remaining: {timeRemaining} seconds</div>
           <span className="block font-bold mb-2 text-lg">{`${currentQuestionIndex + 1} / ${questions.length}`}</span>
         </div>
       </div>
 
       <div className="h-[90%] flex flex-col justify-center items-center xl:w-[50%] ">
-        <div className=' w-full ' >
-          <h3 className="mb-4 w-full text-2xl font-bold">{currentQuestion?.question}</h3>
-          <ul className="space-y-2">
+        <div className=' w-full  -mt-[20%] ' >
+          <h3 className="mb-[17px] w-full text-2xl font-bold"> <span>{currentQuestionIndex+1}. </span> {currentQuestion?.question}</h3>
+          <ul className=" lg:grid grid-cols-2 gap-3 ">
 
             {currentQuestion?.options.map((option, index) => (
               <li
                 key={index}
-                className={`p-4 w-full border rounded-lg cursor-pointer ${answers[currentQuestionIndex] === index ? 'bg-green-200 border-green-500' : 'bg-white'}`}
+                className={`p-4 w-full whitespace-nowrap border rounded-lg cursor-pointer ${answers[currentQuestionIndex] === index ? 'bg-green-200 border-green-500' : 'bg-white'}`}
                 onClick={() => handleOptionChange(currentQuestionIndex, index)}
               >
                 {option}
@@ -104,7 +105,7 @@ const QuizPage: React.FC = () => {
         </div>
         <button
           onClick={nextQuestion}
-          className="mt-10 px-4 w-full py-3 bg-blue-500 duration-200 text-white rounded-2xl hover:bg-blue-700"
+          className="mt-16 px-4 w-full py-3 bg-blue-500 duration-200 text-white rounded-2xl hover:bg-blue-700"
         >
           {currentQuestionIndex < questions.length - 1 ? "Next" : "Submit"}
         </button>

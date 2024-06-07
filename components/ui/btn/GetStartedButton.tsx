@@ -26,22 +26,23 @@ const GetStartedButton: React.FC<GetStartedButtonProps> = ({ session }) => {
                 setVal(data);
             }
         };
+
         fetchData();
     }, []);
 
+
     const handleGetStarted = async () => {
         try {
-            // plausible('GetStartedBtnClicked');
             console.log("-----val "+val);
             console.log("-----session "+JSON.stringify(session));
             if (val !== undefined && val !== null) {
-                if (session) {
+                // if (session) {
                     if (val === "true" ) {
                         router.push("/home");
                     } else {
                         router.push("/onboarding");
                     }
-                }
+                // }
             } else {
                 await signIn();
             }

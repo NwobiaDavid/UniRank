@@ -1,7 +1,11 @@
 "use client";
 
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import {Avatar, AvatarGroup, AvatarIcon} from "@nextui-org/avatar";
+import {Spinner} from "@nextui-org/spinner";
+import Confetti from 'react-confetti';
 
 type Question = {
     answer: number;
@@ -11,12 +15,20 @@ const ResultPage: React.FC = () => {
     const router = useRouter();
     const [score, setScore] = useState<number | null>(null);
     const [loading, setLoading] = useState(false);
+    const [img, setImg] = useState("");
+    const [showConfetti, setShowConfetti] = useState<boolean>(true);
+
+    const {data: session } = useSession();
 
     const numtry = 1;
 
     useEffect(() => {
         const answers = JSON.parse(localStorage.getItem('answers') || '{}');
         const questions: Question[] = JSON.parse(localStorage.getItem('questions') || '[]');
+
+        if (session?.user?.image) {
+            setImg(session.user.image);
+        }
 
         if (questions.length > 0) {
             let correctAnswers = 0;
@@ -34,7 +46,12 @@ const ResultPage: React.FC = () => {
             setScore(0);
             console.log("not here ")
         }
-    }, []);
+
+        setTimeout(() => {
+            setShowConfetti(false);
+        }, 5000);
+
+    }, [session]);
 
     useEffect(() => {
         if (score !== null) {
@@ -67,15 +84,22 @@ const ResultPage: React.FC = () => {
     }, [score]);
 
     if (score === null) {
-        return <div>Loading...</div>;
+        return <div className='text-center p-32' > <Spinner label="Loading..." color="default" labelColor="foreground"/> </div>;
     }
     return (
-        <div className=' p-32 flex justify-center items-center' >
+        <div className=' px-32 py-3 flex justify-center ' >
             {loading ? (
-                <div> loading</div >
+                <div> <Spinner label="Loading..." color="default" labelColor="foreground"/> </div >
             ) : (
-                <div className="p-4 justify-center flex items-center flex-col ">
-                    <h1 className="text-3xl mb-7">Your Score: <span className="font-bold">{score}</span></h1>
+                <div className="p-4  flex items-center flex-col ">
+                    <div className='mb-[7rem] ' >
+                    <Avatar isBordered src={img} />
+
+                    </div>
+                    <div className="flex flex-col justify-center items-center" >
+                        <p className=" font-bold text-sm xl:text-base uppercase " >score</p>
+                        <h1 className="text-9xl mb-12"> <span className="font-bold">{score}</span></h1>
+                    </div>
                     <button
                         onClick={() => router.push('/home')}
                         className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700"

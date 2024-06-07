@@ -23,7 +23,7 @@ export default async function useFetchData() {
       // return session
       try {
         const existingUser = await userModal.findOne({ email: session?.user?.email });
-        // const userGoals = await goalModal.find({ userId: existingUser?._id})
+        console.log("user ---> "+JSON.stringify(existingUser));
         if (existingUser.university ) {
           return "true";
         } else {
