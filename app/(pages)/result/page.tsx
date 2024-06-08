@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Avatar } from "@nextui-org/avatar";
 import { Spinner } from "@nextui-org/spinner";
 import Confetti from 'react-confetti';
+import useWindowSize from 'react-use/lib/useWindowSize';
 
 type Question = {
   answer: number;
@@ -13,6 +14,7 @@ type Question = {
 
 const ResultPage: React.FC = () => {
   const router = useRouter();
+  const { width, height } = useWindowSize();
   const [score, setScore] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [img, setImg] = useState("");
@@ -22,6 +24,12 @@ const ResultPage: React.FC = () => {
   const numtry = 1;
 
   useEffect(() => {
+    const completedQuiz = localStorage.getItem('completedQuiz');
+    if (!completedQuiz) {
+      router.push('/home');
+      return;
+    }
+
     const answers = JSON.parse(localStorage.getItem('answers') || '{}');
     const questions: Question[] = JSON.parse(localStorage.getItem('questions') || '[]');
     const timeSpent: { [key: number]: number } = JSON.parse(localStorage.getItem('timeSpent') || '{}');
@@ -53,6 +61,7 @@ const ResultPage: React.FC = () => {
         localStorage.removeItem('answers');
         localStorage.removeItem('questions');
         localStorage.removeItem('timeSpent');
+        localStorage.removeItem('completedQuiz');
       }, 5000);
     } else {
       setScore(0);
@@ -114,7 +123,7 @@ const ResultPage: React.FC = () => {
           >
             Go Home
           </button>
-          {showConfetti && <Confetti />}
+          {showConfetti && <Confetti width={width} height={height} />}
         </div>
       )}
     </div>

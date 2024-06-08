@@ -33,7 +33,7 @@ const page = () => {
       
 
       const responseData = await response.json();
-      setScore(responseData?.user.score);
+      setScore(responseData?.user?.score);
       setError("");
 
       } catch (error: any) {
@@ -56,19 +56,6 @@ const page = () => {
       router.push('/quiz');
     }
   };
-
-  // if (!quizStarted) {
-  //   return (
-  //     <div className="flex flex-col h-screen justify-center items-center">
-  //       <button
-  //         onClick={startQuiz}
-  //         className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-  //       >
-  //         Start Quiz
-  //       </button>
-  //     </div>
-  //   );
-  // }
 
 
   return (

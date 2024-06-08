@@ -15,10 +15,11 @@ export async function PUT(request:Request) {
   if (!session) {
     return NextResponse.json({ message: "Not authorized!" }, { status: 401 });
   }
+  
 
   await connectToDB();
 
-  const { score, numtry } = await request.json();
+  const { formatScore, numtry } = await request.json();
   try {
     const dbUser = await userModal.findOne({ email: session?.user?.email });
     if (!dbUser) {
@@ -28,7 +29,7 @@ export async function PUT(request:Request) {
       );
     }
 
-    dbUser.score = score;
+    dbUser.score = formatScore;
     dbUser.numtry += numtry;
 
     await dbUser.save();

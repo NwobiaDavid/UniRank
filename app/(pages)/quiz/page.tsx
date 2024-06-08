@@ -99,6 +99,7 @@ const QuizPage: React.FC = () => {
       localStorage.setItem('answers', JSON.stringify(answers));
       localStorage.setItem('questions', JSON.stringify(questions));
       localStorage.setItem('timeSpent', JSON.stringify(timeSpent));
+      localStorage.setItem('completedQuiz', 'true');
       router.push('/result');
     }
   };
