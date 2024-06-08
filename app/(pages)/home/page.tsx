@@ -10,10 +10,12 @@ const page = () => {
   const [loading, setLoading] = useState(false);
   const [score, setScore] = useState(0);
   const [error,setError] = useState("");
+  const [quizStarted, setQuizStarted] = useState(false);
 
-  const startQuiz = () => {
-    router.push('/quiz');
-  };
+
+  // const startQuiz = () => {
+  //   router.push('/quiz');
+  // };
 
   useEffect(() => {
     async function getScore () {
@@ -45,6 +47,28 @@ const page = () => {
 
     getScore();
   }, [])
+
+
+  const startQuiz = () => {
+    setQuizStarted(true);
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+      router.push('/quiz');
+    }
+  };
+
+  // if (!quizStarted) {
+  //   return (
+  //     <div className="flex flex-col h-screen justify-center items-center">
+  //       <button
+  //         onClick={startQuiz}
+  //         className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+  //       >
+  //         Start Quiz
+  //       </button>
+  //     </div>
+  //   );
+  // }
 
 
   return (

@@ -15,6 +15,9 @@ const QuizPage: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(20);
   const [answers, setAnswers] = useState<{ [key: number]: number }>({});
+  const [startTime, setStartTime] = useState<number>(Date.now());
+  const [timeSpent, setTimeSpent] = useState<{ [key: number]: number }>({});
+  const [quizStarted, setQuizStarted] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -56,14 +59,12 @@ const QuizPage: React.FC = () => {
     return () => clearInterval(timer);
   }, [timeRemaining]);
 
-
   useEffect(() => {
-    // Request full-screen mode
-    if (document.documentElement.requestFullscreen) {
-      document.documentElement.requestFullscreen();
-    }
-
-    // Detect if the user opens the developer tools
+    
+    // if (document.documentElement.requestFullscreen) {
+    //   document.documentElement.requestFullscreen();
+    // }
+    
     const detectDevTools = () => {
       const threshold = 160;
       const widthThreshold = window.outerWidth - window.innerWidth > threshold;
@@ -82,19 +83,22 @@ const QuizPage: React.FC = () => {
     };
   }, [answers, questions, router]);
 
-  
   const handleOptionChange = (questionIndex: number, optionIndex: number) => {
     setAnswers({ ...answers, [questionIndex]: optionIndex });
   };
 
-
   const nextQuestion = () => {
+    const endTime = Date.now();
+    setTimeSpent({ ...timeSpent, [currentQuestionIndex]: (endTime - startTime) / 1000 });
+
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(prevIndex => prevIndex + 1);
+      setStartTime(Date.now());
       setTimeRemaining(20);
     } else {
       localStorage.setItem('answers', JSON.stringify(answers));
       localStorage.setItem('questions', JSON.stringify(questions));
+      localStorage.setItem('timeSpent', JSON.stringify(timeSpent));
       router.push('/result');
     }
   };
