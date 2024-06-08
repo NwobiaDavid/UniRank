@@ -86,10 +86,10 @@ const page = () => {
         <div>User position: {userPosition !== null ? getOrdinal(userPosition) : 'N/A'}</div>
         <Table
           aria-label="Leaderboard"
-          // css={{
-          //   height: "auto",
-          //   minWidth: "100%",
-          // }}
+          style={{
+            height: "auto",
+            minWidth: "100%",
+          }}
         >
           <TableHeader>
             <TableColumn>Position</TableColumn>
@@ -99,7 +99,7 @@ const page = () => {
           </TableHeader>
           <TableBody>
             {leaderboard.map((item, index) => (
-              <TableRow key={index} css={getPositionStyle(index)}>
+              <TableRow key={index} style={getPositionStyle(index)}>
                 <TableCell>{getOrdinal(index + 1)}</TableCell>
                 <TableCell>{item?.userName}</TableCell>
                 <TableCell>{item?.university}</TableCell>
