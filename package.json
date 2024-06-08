@@ -15,6 +15,7 @@
     "@nextui-org/skeleton": "^2.0.28",
     "@nextui-org/spinner": "^2.0.29",
     "@nextui-org/system": "^2.2.0",
+    "@nextui-org/table": "^2.0.35",
     "@nextui-org/theme": "^2.2.4",
     "framer-motion": "^11.2.6",
     "mongoose": "^8.4.0",

@@ -2,6 +2,8 @@
 
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react';
+import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, Spinner} from "@nextui-org/react";
+
 
 const page = () => {
   const [loading, setLoading] = useState(false);
@@ -57,19 +59,58 @@ const page = () => {
     }
   };
 
+  const columns = [
+    {
+      key: "name",
+      label: "NAME",
+    },
+    {
+      key: "role",
+      label: "ROLE",
+    },
+    {
+      key: "status",
+      label: "STATUS",
+    },
+  ];
+
   return (
     <div>
-      <h1>Leaderboard</h1>
-      <div>User position: {userPosition !== null ? getOrdinal(userPosition) : 'N/A'}</div>
-
-      <div>
-        {leaderboard.map((item, index) => (
-          <div key={index} style={getPositionStyle(index)}>
-            {getOrdinal(index + 1)} - {item?.userName} - {item?.university} - {item?.score}
-          </div>
-        ))}
+    <h1>Leaderboard</h1>
+    {loading ? (
+      <div className='text-center p-32'>
+        <Spinner label="Loading..." color="default" labelColor="foreground" />
       </div>
-    </div>
+    ) : (
+      <>
+        <div>User position: {userPosition !== null ? getOrdinal(userPosition) : 'N/A'}</div>
+        <Table
+          aria-label="Leaderboard"
+          // css={{
+          //   height: "auto",
+          //   minWidth: "100%",
+          // }}
+        >
+          <TableHeader>
+            <TableColumn>Position</TableColumn>
+            <TableColumn>Name</TableColumn>
+            <TableColumn>University</TableColumn>
+            <TableColumn>Score</TableColumn>
+          </TableHeader>
+          <TableBody>
+            {leaderboard.map((item, index) => (
+              <TableRow key={index} css={getPositionStyle(index)}>
+                <TableCell>{getOrdinal(index + 1)}</TableCell>
+                <TableCell>{item?.userName}</TableCell>
+                <TableCell>{item?.university}</TableCell>
+                <TableCell>{item?.score}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </>
+    )}
+  </div>
   );
 }
 
