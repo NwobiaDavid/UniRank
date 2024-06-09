@@ -54,7 +54,7 @@ const GetStartedButton: React.FC<GetStartedButtonProps> = ({ session }) => {
     return (
         <button onClick={handleGetStarted} className="active:scale-95 duration-200 hover:scale-105 hover:border-opacity-100 border-opacity-65 border rounded-xl border-slate-800 bg-white px-8 py-3 flex items-center">
             <span>
-                GET STARTED
+               {!session ?  "GET STARTED" : "HOME"}
             </span>
         </button>
     );

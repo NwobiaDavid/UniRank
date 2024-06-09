@@ -13,7 +13,7 @@ export async function GET(req: Request) {
     return NextResponse.json({ message: "Not authorized!" }, { status: 401 });
   }
 
-  let dbUser;
+  // let dbUser;
   // let userId;
 
   try {
@@ -33,7 +33,7 @@ export async function GET(req: Request) {
     //   return NextResponse.json({ message: 'User ID is required' }, { status: 400 });
     // }
 
-    dbUser = await userModal.findOne({ email: session?.user?.email });
+    const dbUser = await userModal.findOne({ email: session?.user?.email });
 
     if (!dbUser) {
       return NextResponse.json({ message: "user not found." }, { status: 404 });
@@ -46,7 +46,7 @@ export async function GET(req: Request) {
     const userIndex = allUsers.findIndex(user => user._id.toString() === userId);
     const userPosition = userIndex >= 0 ? userIndex + 1 : null;  // Rank is 1-based
 
-    return NextResponse.json({ leaderboard: topUsers, userPosition: userPosition });
+    return NextResponse.json({ leaderboard: topUsers, userPosition: userPosition, user: dbUser });
   } catch (error) {
     console.error('Error fetching leaderboard:', error);
     return NextResponse.json({ message: 'Something went wrong' }, { status: 500 });
