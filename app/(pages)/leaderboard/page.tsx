@@ -2,16 +2,28 @@
 
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react';
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, Spinner} from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@nextui-org/react";
 import Image from 'next/image';
 import { FaCrown, FaMedal } from 'react-icons/fa';
 
+interface User {
+  userName: string;
+  university: string;
+  image: string;
+  score: number;
+}
 
-const page = () => {
-  const [loading, setLoading] = useState(false);
-  const [leaderboard, setLeaderboard] = useState([]);
-  const [user, setUser] = useState(null);
-  const [userPosition, setUserPosition] = useState(null);
+interface LeaderboardItem {
+  userName: string;
+  university: string;
+  score: number;
+}
+
+const Page: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardItem[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [userPosition, setUserPosition] = useState<number | null>(null);
 
   useEffect(() => {
     async function getStats() {
@@ -34,7 +46,6 @@ const page = () => {
         setUserPosition(responseData?.userPosition);
         setUser(responseData?.user);
 
-
       } catch (error: any) {
         console.error("Error fetching data:", error?.message);
       } finally {
@@ -45,14 +56,13 @@ const page = () => {
     getStats();
   }, []);
 
-
-  const getOrdinal = (n: number) => {
+  const getOrdinal = (n: number): string => {
     const s = ["th", "st", "nd", "rd"];
     const v = n % 100;
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
   };
 
-  const getPositionStyle = (index: number) => {
+  const getPositionStyle = (index: number): React.CSSProperties => {
     switch (index) {
       case 0:
         return { color: 'gold', fontWeight: 600 }; // 1st position
@@ -65,7 +75,7 @@ const page = () => {
     }
   };
 
-  const renderIcon = (index: number) => {
+  const renderIcon = (index: number): JSX.Element | null => {
     switch (index) {
       case 0:
         return <FaCrown className="text-gold" />;
@@ -80,51 +90,50 @@ const page = () => {
 
   return (
     <div>
-    {/* <h1>Leaderboard</h1> */}
-    {loading ? (
-      <div className='text-center p-32'>
-        <Spinner label="Loading..." color="default" labelColor="foreground" />
-      </div>
-    ) : (
-      <div className='p-5'>
-        <div className='flex mb-10 p-3 rounded-xl border shadow-md justify-around items-center' >
-          <div className=' flex  items-center justify-center ' >
-            <div className=' mr-2 rounded-full overflow-hidden relative h-[60px] w-[60px] ' >
-              <Image className=' w-full h-full object-cover ' fill={true} alt="your profile picture" src={user?.image} />
-            </div>
-            <div>
-              <h2 className=' font-medium opacity-50 ' > {user?.userName} </h2>
-              <p className=' font-semibold ' > {user?.university} </p>
-            </div>
-          </div>
-
-          <div className='flex flex-col justify-center items-center ' >
-            <div className=' font-semibold text-base opacity-80 ' >{userPosition !== null ? getOrdinal(userPosition) : 'N/A'}</div>
-            <div className=' text-4xl font-bold ' > {user?.score} </div>
-          </div>
+      {loading ? (
+        <div className='text-center p-32'>
+          <Spinner label="Loading..." color="default" labelColor="foreground" />
         </div>
+      ) : (
+        <div className='p-5'>
+          <div className='flex mb-10 p-3 rounded-xl border shadow-md justify-around items-center'>
+            <div className='flex items-center justify-center'>
+              <div className='mr-2 rounded-full overflow-hidden relative h-[60px] w-[60px]'>
+                <Image className='w-full h-full object-cover' fill={true} alt="your profile picture" src={user?.image || ""} />
+              </div>
+              <div>
+                <h2 className='font-medium opacity-50'>{user?.userName}</h2>
+                <p className='font-semibold'>{user?.university}</p>
+              </div>
+            </div>
 
-        <div className="  ">
-          <Table
-            aria-label="Leaderboard"
-            style={{
-              height: "auto",
-              minWidth: "100%",
-            }}
-          >
-            <TableHeader>
-              <TableColumn>Rank</TableColumn>
-              <TableColumn>Name</TableColumn>
-              <TableColumn>University</TableColumn>
-              <TableColumn>Score</TableColumn>
-            </TableHeader>
-            <TableBody>
-              {leaderboard.map((item, index) => (
-                <TableRow className=' border-b xl:text-lg ' key={index} >
-                  <TableCell >
-                      <div style={getPositionStyle(index)}  className="py-2 flex  items-center capitalize"> 
-                      {renderIcon(index)}
-                      <span className="ml-2">{getOrdinal(index + 1)}</span>
+            <div className='flex flex-col justify-center items-center'>
+              <div className='font-semibold text-base opacity-80'>{userPosition !== null ? getOrdinal(userPosition) : 'N/A'}</div>
+              <div className='text-4xl font-bold'>{user?.score}</div>
+            </div>
+          </div>
+
+          <div className="w-full">
+            <Table
+              aria-label="Leaderboard"
+              style={{
+                height: "auto",
+                minWidth: "100%",
+              }}
+            >
+              <TableHeader>
+                <TableColumn>Rank</TableColumn>
+                <TableColumn>Name</TableColumn>
+                <TableColumn>University</TableColumn>
+                <TableColumn>Score</TableColumn>
+              </TableHeader>
+              <TableBody>
+                {leaderboard.map((item, index) => (
+                  <TableRow className='border-b xl:text-lg' key={index}>
+                    <TableCell>
+                      <div style={getPositionStyle(index)} className="py-2 flex items-center capitalize">
+                        {renderIcon(index)}
+                        <span className="ml-2">{getOrdinal(index + 1)}</span>
                       </div>
                     </TableCell>
                     <TableCell>
@@ -133,18 +142,18 @@ const page = () => {
                     <TableCell>
                       <div className="py-2 capitalize">{item?.university}</div>
                     </TableCell>
-                    <TableCell >
+                    <TableCell>
                       <div className="py-2 capitalize font-semibold">{item?.score}</div>
                     </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </div>
-      </div>
-    )}
-  </div>
+      )}
+    </div>
   );
 }
 
-export default page;
+export default Page;
