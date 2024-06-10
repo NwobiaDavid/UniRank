@@ -119,7 +119,7 @@ const ResultPage: React.FC = () => {
           </div>
           <button
             onClick={() => router.push('/home')}
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700"
+            className="px-4 py-2 bg-[#161A30] duration-200  hover:bg-[#000000]  text-white rounded-lg "
           >
             Go Home
           </button>
