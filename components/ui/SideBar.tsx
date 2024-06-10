@@ -7,11 +7,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { AiFillHome, AiFillBell } from "react-icons/ai";
 import { FaBell, FaHome, FaUser } from "react-icons/fa";
 import { signOut, useSession } from "next-auth/react";
-import { VscFeedback } from "react-icons/vsc";
-import { MdExplore } from "react-icons/md";
-import { IoAdd, IoAddCircleOutline, IoHomeOutline, IoNavigateCircleOutline, IoNotificationsOutline, IoPersonOutline } from "react-icons/io5";
+// import { VscFeedback } from "react-icons/vsc";
+import { MdExplore, MdHome, MdLeaderboard } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { FaCirclePlus } from "react-icons/fa6";
+// import { FaCirclePlus } from "react-icons/fa6";
 import { Skeleton } from "@nextui-org/react";
 import { BsThreeDots } from "react-icons/bs";
 import { TbLogout } from "react-icons/tb";
@@ -42,27 +41,27 @@ interface SideBarProps {
         {
             route: "/home",
             label: "Home",
-            icon: <IoHomeOutline />
+            icon: <MdHome />
         },
         {
-            route: "/leader-board",
+            route: "/leaderboard",
             label: "LeaderBoard",
-            icon: <IoNavigateCircleOutline />
+            icon: <MdLeaderboard />
         }
     ];
 
-    const sidebarLinkstwo = [
-        {
-            route: "/profile/me",
-            label: "Profile",
-            icon: <FaUser />
-        },
-        {
-            route: "/dashboard",
-            label: "Home",
-            icon: <AiFillHome />
-        },
-    ];
+    // const sidebarLinkstwo = [
+    //     {
+    //         route: "/profile/me",
+    //         label: "Profile",
+    //         icon: <FaUser />
+    //     },
+    //     {
+    //         route: "/dashboard",
+    //         label: "Home",
+    //         icon: <AiFillHome />
+    //     },
+    // ];
 
     const handleDrop = async () => {
         setIsDrop(!isDrop);
@@ -108,11 +107,13 @@ interface SideBarProps {
     }, []);
 
     return (
-        <div className={`py-3 bg-slate-500 text-white flex flex-col justify-between border-r border-y rounded-r-xl h-full w-full pr-3 transition-all duration-300`}>
+        <div className={`py-3 bg-[#31304D] text-white flex flex-col justify-between border-r border-y rounded-r-xl h-full w-full pr-3 transition-all duration-300`}>
             <div>
-                <button onClick={toggleSidebar} className="p-4">
-                    <FaBars />
-                </button>
+                <div className={`w-full flex ${!isSidebarExpanded ? " items-center justify-center " : " justify-start items-start "} `}>
+                    <button onClick={toggleSidebar} className="p-4">
+                        <FaBars size={20} />
+                    </button>
+                </div>
 
                 <div>
                     {sidebarLinksone.map((link) => {
@@ -121,7 +122,7 @@ interface SideBarProps {
                             pathname === link.route;
                         return (
                             <Link key={link.label} href={link.route}>
-                                <div className={`px-3 py-5 mb-2 rounded-r-full text-center cursor-pointer duration-200 font-semibold ${isActive ? 'bg-gray-400 text-gray-800 hover:bg-white hover:text-black' : 'hover:bg-gray-300 text-gray-700'}`}>
+                                <div className={`px-3 py-5 mb-2 rounded-r-full text-center cursor-pointer duration-200 font-semibold ${isActive ? 'bg-[#161A30] text-white hover:bg-white hover:text-black' : 'hover:bg-[#B6BBC4] text-white'}`}>
                                     <div className="flex justify-center">
                                         <span className="text-2xl w-[30%] flex justify-end mr-2">{link.icon}</span>
                                         {isSidebarExpanded && <p className="max-lg:hidden flex tracking-wider w-[70%]">{link.label}</p>}
@@ -148,10 +149,10 @@ interface SideBarProps {
                         )}
                     </div>
                 ) : (
-                    <div className={`p-2 rounded-full border hover:shadow-sm duration-200 flex items-center ${isDrop ? 'xl:bg-white bg-gray-200' : 'bg-white'}`}>
+                    <div className={`p-2 rounded-full border hover:shadow-sm duration-200 flex items-center ${isDrop ? 'xl:bg-[#F0ECE5] bg-white' : 'bg-[#F0ECE5]'}`}>
                         {img && (
                             <div onClick={handleDrop} className="cursor-pointer">
-                                <Image className="rounded-full border w-[35px] h-[35px] xl:w-[50px] xl:h-[50px]" width={40} height={40} src={img} alt="profile pic" />
+                                <Image className="rounded-full border border-[#31304D] w-[35px] h-[35px] xl:w-[50px] xl:h-[50px]" width={40} height={40} src={img} alt="profile pic" />
                             </div>
                         )}
                         {isSidebarExpanded && (
@@ -161,7 +162,7 @@ interface SideBarProps {
                             </div>
                         )}
                         {isSidebarExpanded && (
-                            <div onClick={handleDrop} className={`xl:block cursor-pointer hover:bg-gray-200 duration-200 rounded-full hidden p-3 ml-2 ${isDrop ? 'bg-gray-200' : 'bg-white'}`}>
+                            <div onClick={handleDrop} className={`xl:block cursor-pointer hover:bg-gray-200 duration-200 rounded-full hidden p-3 ml-2 ${isDrop ? 'bg-white' : 'bg-[#F0ECE5]'}`}>
                                 <BsThreeDots />
                             </div>
                         )}
@@ -169,7 +170,7 @@ interface SideBarProps {
                 )}
 
                 {isDrop && (
-                    <div className={` ${isSidebarExpanded ? ' right-0 ': ' -right-[calc(100%+100px)] '} absolute p-2 xl:-top-[calc(100%+3px)] top-[calc(100%+2px)]  flex justify-center shadow-sm items-center h-[80px] w-[250px] border rounded-xl bg-white`}>
+                    <div className={` ${isSidebarExpanded ? ' right-0 ': ' -right-[calc(100%+100px)] '} absolute p-2 xl:-top-[calc(100%+3px)] top-[calc(100%+2px)]  flex justify-center shadow-sm items-center h-[80px] w-[250px] border border-[#31304D] rounded-xl bg-white`}>
                         <div onClick={handleLogout} className="ml-2 text-xl w-full hover:bg-red-800 hover:text-white duration-200 px-3 py-2 rounded-full border cursor-pointer justify-center flex items-center">
                             <TbLogout />
                             <span className="ml-2">Logout</span>

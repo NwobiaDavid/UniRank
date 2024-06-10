@@ -25,13 +25,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <section>
             <Provider>
-                <section className="flex flex-col justify-between xl:h-full overflow-hidden w-screen h-screen">
+                <section className="flex flex-col justify-between xl:h-full overflow-hidden w-screen bg-[#F0ECE5] h-screen">
                     <div className="h-full w-full flex-col xl:flex-row flex justify-between">
                         <section className={`z-40 py-5 fixed left-0 h-full xl:flex hidden ${isSidebarExpanded ? 'w-[20%]' : 'w-[5%] '} transition-all duration-300`}>
                             <SideBar isSidebarExpanded={isSidebarExpanded} toggleSidebar={toggleSidebar} />
                         </section>
                         <section className={`p-5  ${isSidebarExpanded ? 'xl:ml-[20%]' : 'xl:ml-[5%]'} xl:mb-0 mb-10  overflow-y-hidden h-screen ${isSidebarExpanded ? 'xl:w-[80%]' : 'xl:w-[95%]'} w-full transition-all duration-300`}>
-                            <div className="border h-full rounded-xl">{children}</div>
+                            <div className="border border-[#31304D] border-opacity-40 h-full rounded-xl">{children}</div>
                         </section>
                         <section className="border-t bg-white z-30 w-full flex xl:hidden h-[8%] fixed bottom-0">
                             <ResSideBar />
