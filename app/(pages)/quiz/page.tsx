@@ -113,7 +113,7 @@ const QuizPage: React.FC = () => {
   return (
     <div className="p-4 flex flex-col h-[90dvh] justify-center items-center no-select">
       <div className=' h-[10%] w-full flex justify-center items-center ' >
-        <div className="border-b flex p-3 justify-between items-center xl:w-[90%] ">
+        <div className="border-b border-[#31304D] flex p-3 justify-between items-center xl:w-[90%] ">
           <div className="mb-4 text-lg font-semibold">Time Remaining: {timeRemaining} seconds</div>
           <span className="block font-bold mb-2 text-lg">{`${currentQuestionIndex + 1} / ${questions.length}`}</span>
         </div>
@@ -127,7 +127,7 @@ const QuizPage: React.FC = () => {
             {currentQuestion?.options.map((option, index) => (
               <li
                 key={index}
-                className={`p-4 w-full whitespace-nowrap border rounded-lg cursor-pointer ${answers[currentQuestionIndex] === index ? 'bg-green-200 border-green-500' : 'bg-white'}`}
+                className={`p-4 w-full whitespace-nowrap border duration-200 rounded-lg cursor-pointer ${answers[currentQuestionIndex] === index ? 'bg-green-200 border-green-500' : 'bg-[#dad1c4] hover:shadow-md hover:shadow-[#c2b5a3] border-[#c2b5a3]'}`}
                 onClick={() => handleOptionChange(currentQuestionIndex, index)}
               >
                 {option}
@@ -137,7 +137,7 @@ const QuizPage: React.FC = () => {
         </div>
         <button
           onClick={nextQuestion}
-          className="mt-16 px-4 w-full py-3 bg-blue-500 duration-200 text-white rounded-2xl hover:bg-blue-700"
+          className="mt-16 px-4 w-full py-3 bg-[#161A30] duration-200 text-white rounded-2xl hover:bg-[#000000] "
         >
           {currentQuestionIndex < questions.length - 1 ? "Next" : "Submit"}
         </button>
