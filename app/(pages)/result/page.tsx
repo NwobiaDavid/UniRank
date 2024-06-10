@@ -69,7 +69,7 @@ const ResultPage: React.FC = () => {
 
     setTimeout(() => {
       setShowConfetti(false);
-    }, 5000);
+    }, 10000);
   }, [session]);
 
   useEffect(() => {
@@ -105,7 +105,7 @@ const ResultPage: React.FC = () => {
   }
 
   return (
-    <div className='px-32 py-3 flex justify-center'>
+    <div className='px-32 min-h-[100dvh] py-3 flex justify-center'>
       {loading ? (
         <div><Spinner label="Loading..." color="default" labelColor="foreground" /></div>
       ) : (

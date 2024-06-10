@@ -96,9 +96,9 @@ const Page: React.FC = () => {
         </div>
       ) : (
         <div className='p-5'>
-          <div className='flex mb-10 p-3 rounded-xl border shadow-md justify-around items-center'>
+          <div className='flex mb-10 bg-white p-3 rounded-xl border shadow-md justify-around items-center'>
             <div className='flex items-center justify-center'>
-              <div className='mr-2 rounded-full overflow-hidden relative h-[60px] w-[60px]'>
+              <div className='mr-2 rounded-full border border-[#161A30]  overflow-hidden relative h-[60px] w-[60px]'>
                 <Image className='w-full h-full object-cover' fill={true} alt="your profile picture" src={user?.image || ""} />
               </div>
               <div>
