@@ -9,6 +9,7 @@ import { getServerSession } from "next-auth";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
 import { useSession } from "next-auth/react";
+import Unilist from "@/components/landing/Unilist";
 
 export default function Home() {
   // const session = (await getServerSession()) || {};
@@ -65,7 +66,7 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="h-[60dvh] flex xl:w-[70%] justify-around items-center">
           <div className="w-[50%] mr-5 py-20 px-5">
-            <div className="mb-10 flex flex-col justify-center items-center">
+            <div className="mb-6 flex flex-col justify-center items-center">
               <h2 className="text-7xl font-bold">
                 Are You Among the <span className="text-blue-600">Top 1%?</span>
               </h2>
@@ -81,7 +82,7 @@ export default function Home() {
           <div className="w-[50%] h-full flex justify-center items-center p-2">
             <motion.div 
             
-            className="relative w-full xl:h-[25%] flex flex-col justify-end items-end">
+            className="relative w-full xl:h-[25%] -mb-20 flex flex-col justify-end items-end">
               <AnimatePresence key={shuffleKey}>
                 {leaderboard.map((item, index) => (
                   <motion.div
@@ -91,9 +92,9 @@ export default function Home() {
                     initial="initial"
                     animate="animate"
                     exit="exit"
-                    className={`p-4  shadow-sm  bg-white absolute  border rounded-xl flex w-full justify-around items-center ${
+                    className={`p-4 absolute shadow-sm  duration-200 bg-white  border rounded-xl flex w-full justify-around items-center ${
                       index === 0 ? "scale-[1.4] left-[4rem] bottom-[100%]  " :
-                      index === 1 ? "hover:scale-110 left-[2rem]  bottom-[50%] " :
+                      index === 1 ? "scale-[22] left-[2rem]  bottom-[50%] " :
                       "scale-[1.1]  bottom-0 "
                     }`}
                   >
@@ -118,6 +119,10 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
+
+        <section>
+            <Unilist />
+        </section>
 
         <section id="problem">
           <p>
