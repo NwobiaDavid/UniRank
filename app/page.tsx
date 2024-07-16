@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-async-client-component */
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import GetStartedButton from "../components/ui/btn/GetStartedButton";
@@ -10,6 +10,12 @@ import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
 import { useSession } from "next-auth/react";
 import Unilist from "@/components/landing/Unilist";
+import Problem from "@/components/landing/Problem";
+import About from "@/components/landing/About";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   // const session = (await getServerSession()) || {};
@@ -60,71 +66,115 @@ export default function Home() {
     exit: { opacity: 0, x: -50, transition: { duration: 0.5 } },
   };
 
+
+  const circleRef = useRef(null);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(circleRef.current, 
+      { scale: 0, opacity: 0 }, // Start state: invisible and small
+      { 
+        scale: 35, // End state: large enough to cover the screen
+        opacity: 1,
+        ease: 'power1.inOut',
+        scrollTrigger: {
+          trigger: ".mainsec",
+          start: 'top center', // Adjust start and end points as needed
+          end: 'bottom+=20% center',
+          scrub: true,
+        },
+      }
+    );
+
+    gsap.to(textRef.current, 
+        { 
+          color: "white", 
+          scrollTrigger: {
+            trigger: ".mainsec",
+            start: 'top+=10% bottom', // Adjust start and end points as needed
+            end: 'bottom+=40% center',
+            scrub: true,
+          },
+        }
+      );
+    }, []);
+
   return (
     <div className="bg-neutral-100">
       <Nav />
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <div className="h-[60dvh] flex xl:w-[70%] justify-around items-center">
-          <div className="w-[50%] mr-5 py-20 px-5">
-            <div className="mb-6 flex flex-col justify-center items-center">
-              <h2 className="text-7xl font-bold">
-                Are You Among the <span className="text-blue-600">Top 1%?</span>
-              </h2>
-              <p className="text-xl mt-1">
-                Discover your intellectual capabilities with UniRank. Take our scientifically designed IQ tests,
-              </p>
+      <main className="flex w-full min-h-screen flex-col items-center justify-between ">
+       
+        <section className=" relative h-full w-full " >
+          <div className="h-[60dvh] p-24 flex xl:w-[70%] justify-around items-center">
+            <div className="w-[50%] mr-5 py-20 px-5">
+              <div className="mb-6 flex flex-col justify-center items-center">
+                <h2 className="text-7xl font-bold">
+                  Are You Among the <span className="text-blue-600">Top 1%?</span>
+                </h2>
+                <p className="text-xl mt-1">
+                  Discover your intellectual capabilities with UniRank. Take our scientifically designed IQ tests,
+                </p>
+              </div>
+              <div>
+                <GetStartedButton session={session} />
+              </div>
             </div>
-            <div>
-              <GetStartedButton session={session} />
-            </div>
-          </div>
-
-          <div className="w-[50%] h-full flex justify-center items-center p-2">
-            <motion.div 
-            
-            className="relative w-full xl:h-[25%] -mb-20 flex flex-col justify-end items-end">
-              <AnimatePresence key={shuffleKey}>
-                {leaderboard.map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    custom={index}
-                    variants={itemVariants}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    className={`p-4 absolute shadow-sm  duration-200 bg-white  border rounded-xl flex w-full justify-around items-center ${
-                      index === 0 ? "scale-[1.4] left-[4rem] bottom-[100%]  " :
-                      index === 1 ? "scale-[22] left-[2rem]  bottom-[50%] " :
-                      "scale-[1.1]  bottom-0 "
-                    }`}
-                  >
-                    <div className="w-1/3">
-                      <h3 className="font-semibold capitalize ">{item.name}</h3>
-                    </div>
-                    <div className="w-1/3 flex justify-center capitalize ">{item.uni}</div>
-                    <div
-                      className={`w-1/3 ${
-                        item.rank === "1st"
-                          ? "text-[#FFD700]"
-                          : item.rank === "2nd"
-                          ? "text-[#C0C0C0]"
-                          : "text-[#CD7F32]"
-                      } flex justify-end font-bold`}
+            <div className="w-[50%] h-full flex justify-center items-center p-2">
+              <motion.div
+          
+              className="relative w-full xl:h-[25%] -mb-20 flex flex-col justify-end items-end">
+                <AnimatePresence key={shuffleKey}>
+                  {leaderboard.map((item, index) => (
+                    <motion.div
+                      key={item.id}
+                      custom={index}
+                      variants={itemVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      className={`p-4 absolute shadow-sm  duration-200 bg-white  border rounded-xl flex w-full justify-around items-center ${
+                        index === 0 ? "scale-[1.4] left-[4rem] bottom-[100%]  " :
+                        index === 1 ? "scale-[22] left-[2rem]  bottom-[50%] " :
+                        "scale-[1.1]  bottom-0 "
+                      }`}
                     >
-                      {item.rank}
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </motion.div>
+                      <div className="w-1/3">
+                        <h3 className="font-semibold capitalize ">{item.name}</h3>
+                      </div>
+                      <div className="w-1/3 flex justify-center capitalize ">{item.uni}</div>
+                      <div
+                        className={`w-1/3 ${
+                          item.rank === "1st"
+                            ? "text-[#FFD700]"
+                            : item.rank === "2nd"
+                            ? "text-[#C0C0C0]"
+                            : "text-[#CD7F32]"
+                        } flex justify-end font-bold`}
+                      >
+                        {item.rank}
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+            </div>
           </div>
-        </div>
-
-        <section>
-            <Unilist />
+          <section>
+              <Unilist />
+          </section>
+          <div
+        ref={circleRef}
+        className="w-20 h-20 bg-black rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      ></div>
+          <section className=" mainsec w-full " >
+            <About />
+          </section>
+        </section>
+        <section className="p-24" >
+          <Problem />
         </section>
 
-        <section id="problem">
+        <section id="problem" className="p-24" >
           <p>
             Many students are unaware of their intellectual strengths and weaknesses. Traditional IQ tests are often inaccessible, costly, or not engaging enough. Without a way to measure and compare their cognitive abilities, students miss out on opportunities for self-improvement and academic growth.
           </p>
