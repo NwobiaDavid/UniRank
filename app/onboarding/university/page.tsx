@@ -50,25 +50,25 @@ const AddUniversity: React.FC = () => {
                 <Link className='text-5xl font-bold opacity-75 ' href={"/"}>UniRank</Link>
             </div>
             <div className='h-[93%] mt-3 w-full flex flex-col justify-center items-center'>
-                <h2 className='text-5xl font-semibold mb-7'>Request to add a new university</h2>
-                <div className="w-[30%] px-3 ">
+                <h2 className='md:text-4xl text-3xl font-semibold text-center mb-7'>Request to add a new university</h2>
+                <div className="xl:w-[30%] lg:w-[40%] w-[90%] px-3 ">
                     <input
                         className='p-3 w-full mb-3 outline-none border-[#B6BBC4] border rounded-xl'
-                        placeholder='Email'
+                        placeholder='Your Email'
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
                         type="email"
                     />
                     <input
                         className='p-3 w-full mb-3 outline-none border-[#B6BBC4] border rounded-xl'
-                        placeholder='University Name'
+                        placeholder='Name of University to Add'
                         onChange={(e) => setUniversity(e.target.value)}
                         value={university}
                         type="text"
                     />
                     <textarea
                         className='p-3 w-full mb-3 outline-none border-[#B6BBC4] border rounded-xl'
-                        placeholder='Reason for adding'
+                        placeholder='Reason for Adding'
                         onChange={(e) => setReason(e.target.value)}
                         value={reason}
                         rows={4}

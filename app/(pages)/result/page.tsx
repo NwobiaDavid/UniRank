@@ -16,7 +16,7 @@ const ResultPage: React.FC = () => {
   const router = useRouter();
   const { width, height } = useWindowSize();
   const [score, setScore] = useState<number | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [img, setImg] = useState("");
   const [showConfetti, setShowConfetti] = useState<boolean>(true);
 
@@ -69,7 +69,7 @@ const ResultPage: React.FC = () => {
 
     setTimeout(() => {
       setShowConfetti(false);
-    }, 10000);
+    }, 100000);
   }, [session]);
 
   useEffect(() => {
@@ -101,13 +101,13 @@ const ResultPage: React.FC = () => {
   }, [score]);
 
   if (score === null) {
-    return <div className='text-center p-32'><Spinner label="Loading..." color="default" labelColor="foreground" /></div>;
+    return <div className='text-center p-32'><Spinner label="Loading..." color="primary" labelColor="foreground" /></div>;
   }
 
   return (
     <div className='px-32 min-h-[100dvh] py-3 flex justify-center'>
       {loading ? (
-        <div><Spinner label="Loading..." color="default" labelColor="foreground" /></div>
+        <div><Spinner label="Loading..." color="primary" labelColor="foreground" /></div>
       ) : (
         <div className="p-4 flex items-center flex-col">
           <div className='mb-[7rem]'>

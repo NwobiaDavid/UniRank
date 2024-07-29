@@ -20,7 +20,7 @@ interface LeaderboardItem {
 }
 
 const Page: React.FC = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [leaderboard, setLeaderboard] = useState<LeaderboardItem[]>([]);
   const [user, setUser] = useState<User | null>(null);
   const [userPosition, setUserPosition] = useState<number | null>(null);
@@ -92,7 +92,7 @@ const Page: React.FC = () => {
     <div>
       {loading ? (
         <div className='text-center p-32'>
-          <Spinner label="Loading..." color="default" labelColor="foreground" />
+          <Spinner label="Loading..." color="primary" labelColor="foreground" />
         </div>
       ) : (
         <div className='p-5'>
@@ -128,7 +128,7 @@ const Page: React.FC = () => {
                 <TableColumn>Score</TableColumn>
               </TableHeader>
               <TableBody>
-                {leaderboard.map((item, index) => (
+                {leaderboard.filter(item => item.score > 0).map((item, index) => (
                   <TableRow className='border-b xl:text-lg' key={index}>
                     <TableCell>
                       <div style={getPositionStyle(index)} className="py-2 flex items-center capitalize">

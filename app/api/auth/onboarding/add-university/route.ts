@@ -11,6 +11,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+
 const sendEmail = async (email: string, university: string, reason: string) => {
   const mailOptions = {
     from: process.env.NEXT_MYEMAIL,

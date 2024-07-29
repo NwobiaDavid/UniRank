@@ -11,6 +11,7 @@ import { FaPlus } from 'react-icons/fa';
 
 const Page: React.FC = () => {
     const [username, setUsername] = useState<string>("");
+    const [matricno, setMatricno] = useState<string>("");
     const [university, setUniversity] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -44,7 +45,7 @@ const Page: React.FC = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username, university }),
+                body: JSON.stringify({ username, university, matricno }),
             });
 
             const responseData = await response.json();
@@ -83,13 +84,20 @@ const Page: React.FC = () => {
                         </button>
                     </div>
                     <div className='h-[90%] w-full flex flex-col justify-center items-center'>
-                        <h2 className='text-5xl text-center font-semibold mb-7'>Complete your profile</h2>
+                        <h2 className='text-3xl md:text-4xl text-center font-semibold mb-7'>Complete your profile</h2>
                         <div className="xl:w-[30%] lg:w-[40%] w-[90%] px-3 ">
                             <input
                                 className='p-3 w-full mb-3 outline-none border-[#B6BBC4] border rounded-xl'
                                 placeholder='username'
                                 onChange={(e) => setUsername(e.target.value)}
                                 value={username}
+                                type="text"
+                            />
+                             <input
+                                className='p-3 w-full mb-3 outline-none border-[#B6BBC4] border rounded-xl'
+                                placeholder='matric number for verification'
+                                onChange={(e) => setMatricno(e.target.value)}
+                                value={matricno}
                                 type="text"
                             />
                             <Select

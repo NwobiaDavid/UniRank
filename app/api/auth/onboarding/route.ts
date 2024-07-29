@@ -18,7 +18,7 @@ export async function PUT(request:Request) {
 
   await connectToDB();
 
-  const { username, university } = await request.json();
+  const { username, university, matricno } = await request.json();
   try {
     const dbUser = await userModal.findOne({ email: session?.user?.email });
     if (!dbUser) {
@@ -30,6 +30,7 @@ export async function PUT(request:Request) {
 
     dbUser.userName = username;
     dbUser.university = university;
+    dbUser.matricno = matricno;
 
     await dbUser.save();
   } catch (error) {
