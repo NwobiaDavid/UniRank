@@ -16,6 +16,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Features from "@/components/landing/Features";
 import Faqs from "@/components/landing/Faqs";
+import CTA from "@/components/landing/CTA";
+import Footerr from "@/components/landing/Footerr";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -102,9 +104,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-neutral-100 max-w-screen overflow-hidden relative   ">
+    <div className="bg-neutral-100 max-w-screen  overflow-hidden relative   ">
       <Nav />
-      <main className="flex w-full min-h-screen relative flex-col items-center justify-between ">
+      <main className="flex w-full min-h-screen  flex-col items-center justify-between ">
 
         <section className=" flex flex-col overflow-x-hidden justify-center items-center h-full w-full " >
           <div className="xl:h-[80dvh] p-24 flex xl:w-[73%] justify-around items-center">
@@ -134,8 +136,8 @@ export default function Home() {
                       animate="animate"
                       exit="exit"
                       className={`p-4 absolute shadow-sm  duration-200 bg-white  border rounded-xl flex w-full justify-around items-center ${index === 0 ? "scale-[1.4] left-[4rem] bottom-[100%]  " :
-                          index === 1 ? "scale-[22] left-[2rem]  bottom-[50%] " :
-                            "scale-[1.1]  bottom-0 "
+                        index === 1 ? "scale-[22] left-[2rem]  bottom-[50%] " :
+                          "scale-[1.1]  bottom-0 "
                         }`}
                     >
                       <div className="w-1/3">
@@ -144,10 +146,10 @@ export default function Home() {
                       <div className="w-1/3 flex justify-center capitalize ">{item.uni}</div>
                       <div
                         className={`w-1/3 ${item.rank === "1st"
-                            ? "text-[#FFD700]"
-                            : item.rank === "2nd"
-                              ? "text-[#C0C0C0]"
-                              : "text-[#CD7F32]"
+                          ? "text-[#FFD700]"
+                          : item.rank === "2nd"
+                            ? "text-[#C0C0C0]"
+                            : "text-[#CD7F32]"
                           } flex justify-end font-bold`}
                       >
                         {item.rank}
@@ -162,94 +164,45 @@ export default function Home() {
             <Unilist />
           </section>
 
-          
+
           <div
             ref={circleRef}
-        className="w-20 h-20 bg-black  rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-      ></div>
+            className="w-20 h-20 bg-neutral-900  rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          ></div>
 
 
           <section className=" mainsec w-full " >
             <About />
           </section>
+
         </section>
+
+
         <section className="p-24 z-10 " >
           <Problem />
         </section>
 
-        {/* <section className=" sticky top-0  h-screen w-full " >
-          <Features />
-        </section> */}
+
+        <section style={{display: "unset"}} >
+          <section className=" sticky top-0  w-full " >
+            {/* <div className="bg-red-500  p-10 w-full ">
+              hello
+            </div> */}
+            {/* <Features /> */}
+          </section>
+        </section>
 
         <section className=" w-full z-10  " >
           <Faqs />
         </section>
-
-        <section id="problem" className="p-24" >
-          <p>
-            Many students are unaware of their intellectual strengths and weaknesses. Traditional IQ tests are often inaccessible, costly, or not engaging enough. Without a way to measure and compare their cognitive abilities, students miss out on opportunities for self-improvement and academic growth.
-          </p>
+        <section className=" w-full z-10  " >
+          <CTA />
         </section>
 
-        <section id="why-unirank">
-          <h2>Why Use UniRank?</h2>
-          <ul>
-            <li><strong>Accurate and Engaging:</strong> Our IQ tests are scientifically designed to be both accurate and engaging.</li>
-            <li><strong>Competitive Edge:</strong> Compete with peers and see how you rank among university students.</li>
-            <li><strong>Personal Growth:</strong> Identify areas for improvement and track your progress over time.</li>
-            <li><strong>Accessible and Affordable:</strong> Free access to high-quality IQ testing.</li>
-            <li><strong>Privacy and Security:</strong> Your data is protected with top-notch security measures.</li>
-          </ul>
-        </section>
-
-        <section id="how-it-works">
-          <h2>How It Works</h2>
-          <ol>
-            <li><strong>Sign Up:</strong> Create an account in a few easy steps.</li>
-            <li><strong>Take the Test:</strong> Answer a series of questions within the time limit.</li>
-            <li><strong>View Your Score:</strong> See your IQ score and where you rank among your peers.</li>
-            <li><strong>Improve:</strong> Take tests regularly to track your progress and improve your ranking.</li>
-          </ol>
-        </section>
-
-        <section id="faq">
-          <h2>Frequently Asked Questions</h2>
-          <div className="faq-item">
-            <h3>Is UniRank free to use?</h3>
-            <p>Yes, UniRank is completely free for all university students.</p>
-          </div>
-          <div className="faq-item">
-            <h3>How are the IQ tests designed?</h3>
-            <p>Our IQ tests are developed by experts to ensure accuracy and engagement. They are scientifically designed to measure various cognitive abilities.</p>
-          </div>
-          <div className="faq-item">
-            <h3>How is my data protected?</h3>
-            <p>We use top-notch security measures to protect your data and ensure your privacy.</p>
-          </div>
-          <div className="faq-item">
-            <h3>Can I see how I rank compared to others?</h3>
-            <p>Yes, after completing the test, you can see where you rank among other university students.</p>
-          </div>
-        </section>
-
-        <div className="h-[60vh] flex justify-center items-center">
-          <div className="flex flex-col justify-center items-center">
-            <h2 className="text-7xl mb-5">Ready to Challenge Yourself?</h2>
-            <GetStartedButton session={session} />
-          </div>
-        </div>
-
-        <footer>
-          <p>&copy; 2024 UniRank. All rights reserved.</p>
-          <nav>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms of Service</a>
-          </nav>
-        </footer>
       </main>
-      <Footer />
+      <section className=" w-full z-10  ">
+        <Footerr />
+      </section>
     </div>
   );
 }

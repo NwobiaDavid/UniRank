@@ -38,3 +38,53 @@ body {
   -ms-user-select: none;
   -moz-user-select: none;
 }
+
+
+/* Styles for the Features section */
+/* .features-container {
+  display: flex;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.features-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f3f3;
+}
+
+.features-scroll {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+  height: 100vh;
+}
+
+.scroll-snap {
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
+} */
+
+.stick-ontop {
+  /* position: -webkit-sticky !important;  */
+  position: sticky !important;
+  top: 0;
+  align-self: flex-start;
+  height: auto;
+}

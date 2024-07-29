@@ -2,7 +2,7 @@ import React from 'react'
 
 const Faqs = () => {
     return (
-        <div className=' w-full flex flex-col  overflow-hidden relative items-center justify-center '>
+        <div className=' w-full flex flex-col xl:h-[60vh] overflow-hidden relative items-center justify-center '>
             <div className='text-white xl:w-[50%] text-center mb-5   ' >
                 <h1 className='text-4xl font-semibold capitalize opacity-80 ' >popularly asked questions</h1>
                 <p> a list of most asked questions, hopefully yours have been answered here</p>
