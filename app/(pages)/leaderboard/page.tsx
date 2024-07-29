@@ -91,14 +91,14 @@ const Page: React.FC = () => {
   return (
     <div>
       {loading ? (
-        <div className='text-center p-32'>
+        <div className='text-center p-2 xl:p-32'>
           <Spinner label="Loading..." color="primary" labelColor="foreground" />
         </div>
       ) : (
-        <div className='p-5'>
-          <div className='flex mb-10 bg-white p-3 rounded-xl border shadow-md justify-around items-center'>
+        <div className='p-2 xl:p-5'>
+          <div className='flex mb-10 bg-white p-1 rounded-xl border shadow-md justify-around items-center'>
             <div className='flex items-center justify-center'>
-              <div className='mr-2 rounded-full border border-[#161A30]  overflow-hidden relative h-[60px] w-[60px]'>
+              <div className='mr-2 rounded-full border border-[#161A30]  overflow-hidden relative xl:h-[60px] xl:w-[60px] w-[50px] h-[50px] '>
                 <Image className='w-full h-full object-cover' fill={true} alt="your profile picture" src={user?.image || ""} />
               </div>
               <div>
@@ -113,7 +113,7 @@ const Page: React.FC = () => {
             </div>
           </div>
 
-          <div className="w-full">
+          <div className="w-full xl:text-base text-sm">
             <Table
               aria-label="Leaderboard"
               style={{
