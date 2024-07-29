@@ -88,6 +88,10 @@ const Page: React.FC = () => {
     }
   };
 
+  const getAbbreviatedUniversity = (university: string): string => {
+    return university.length > 20 ? university.split(" ").map(word => word[0]).join("") : university;
+  };
+
   return (
     <div>
       {loading ? (
@@ -98,12 +102,12 @@ const Page: React.FC = () => {
         <div className='p-2 xl:p-5'>
           <div className='flex mb-10 bg-white p-1 rounded-xl border shadow-md justify-around items-center'>
             <div className='flex items-center justify-center'>
-              <div className='mr-2 rounded-full border border-[#161A30]  overflow-hidden relative xl:h-[60px] xl:w-[60px] w-[50px] h-[50px] '>
+              <div className='mr-2 rounded-full border border-[#161A30]  overflow-hidden relative xl:h-[60px] xl:w-[60px] w-[50px] h-[50px]'>
                 <Image className='w-full h-full object-cover' fill={true} alt="your profile picture" src={user?.image || ""} />
               </div>
               <div>
-                <h2 className='font-medium opacity-50'>{user?.userName}</h2>
-                <p className='font-semibold'>{user?.university}</p>
+                <h2 className='font-medium capitalize opacity-50'>{user?.userName}</h2>
+                <p className='font-semibold capitalize '>{getAbbreviatedUniversity(user?.university || "")}</p>
               </div>
             </div>
 
@@ -140,7 +144,7 @@ const Page: React.FC = () => {
                       <div className="py-2 capitalize">{item?.userName}</div>
                     </TableCell>
                     <TableCell>
-                      <div className="py-2 capitalize">{item?.university}</div>
+                      <div className="py-2 capitalize">{getAbbreviatedUniversity(item?.university)}</div>
                     </TableCell>
                     <TableCell>
                       <div className="py-2 capitalize font-semibold">{item?.score}</div>
