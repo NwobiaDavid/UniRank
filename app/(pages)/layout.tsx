@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Provider>
                 <section className="flex flex-col justify-between xl:h-full overflow-hidden w-screen bg-[#F0ECE5] h-screen">
                     <div className="h-full w-full flex-col xl:flex-row flex justify-between">
-                        <section className=" md:hidden z-30 w-full flex xl:hidden h-[10vh] fixed top-0" >
+                        <section className=" lg:hidden z-30 w-full flex xl:hidden h-[10vh] fixed top-0" >
                             <DashNav />
                         </section>
                         <section className={`z-40 py-5 fixed left-0 h-full xl:flex hidden ${isSidebarExpanded ? 'w-[20%]' : 'w-[5%] '} transition-all duration-300`}>
