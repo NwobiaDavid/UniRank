@@ -105,7 +105,7 @@ const ResultPage: React.FC = () => {
   }
 
   return (
-    <div className='px-32 min-h-[100dvh] py-3 flex justify-center'>
+    <div className='xl:px-32 p-5 min-h-[100dvh] py-3 flex justify-center'>
       {loading ? (
         <div><Spinner label="Loading..." color="primary" labelColor="foreground" /></div>
       ) : (

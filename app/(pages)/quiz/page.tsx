@@ -113,21 +113,21 @@ const QuizPage: React.FC = () => {
   return (
     <div className="p-4 flex flex-col h-[90dvh] justify-center items-center no-select">
       <div className=' h-[10%] w-full flex justify-center items-center ' >
-        <div className="border-b border-[#31304D] flex p-3 justify-between items-center xl:w-[90%] ">
-          <div className="mb-4 text-lg font-semibold">Time Remaining: {timeRemaining} seconds</div>
-          <span className="block font-bold mb-2 text-lg">{`${currentQuestionIndex + 1} / ${questions.length}`}</span>
+        <div className="border-b border-[#31304D] flex flex-col xl:flex-row p-3 justify-between items-center w-full xl:w-[90%] ">
+          <div className="mb-4 text-base xl:text-lg font-semibold">Time Remaining: {timeRemaining} seconds</div>
+          <span className="block font-bold mb-4 xl:mb-2 text-base  xl:text-lg">{`${currentQuestionIndex + 1} / ${questions.length}`}</span>
         </div>
       </div>
 
       <div className="h-[90%] flex flex-col justify-center items-center xl:w-[50%] ">
         <div className=' w-full  -mt-[20%] ' >
-          <h3 className="mb-[17px] w-full text-2xl font-bold"> <span>{currentQuestionIndex+1}. </span> {currentQuestion?.question}</h3>
+          <h3 className="mb-[17px] w-full text-xl xl:text-2xl font-bold"> <span>{currentQuestionIndex+1}. </span> {currentQuestion?.question}</h3>
           <ul className=" lg:grid grid-cols-2 gap-3 ">
 
             {currentQuestion?.options.map((option, index) => (
               <li
                 key={index}
-                className={`p-4 w-full whitespace-nowrap border duration-200 rounded-lg cursor-pointer ${answers[currentQuestionIndex] === index ? 'bg-green-200 border-green-500' : 'bg-[#dad1c4] hover:shadow-md hover:shadow-[#c2b5a3] border-[#c2b5a3]'}`}
+                className={`p-4 w-full mb-2 xl:mb-0 whitespace-nowrap border duration-200 rounded-lg cursor-pointer ${answers[currentQuestionIndex] === index ? 'bg-green-200 border-green-500' : 'bg-[#dad1c4] hover:shadow-md hover:shadow-[#c2b5a3] border-[#c2b5a3]'}`}
                 onClick={() => handleOptionChange(currentQuestionIndex, index)}
               >
                 {option}
