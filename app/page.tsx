@@ -33,6 +33,17 @@ export default function Home() {
 
   const [leaderboard, setLeaderboard] = useState(initialLeaderboard);
   const [shuffleKey, setShuffleKey] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
 
   useEffect(() => {
@@ -109,23 +120,24 @@ export default function Home() {
       <main className="flex w-full min-h-screen  flex-col items-center justify-between ">
 
         <section className=" flex flex-col overflow-x-hidden justify-center items-center h-full w-full " >
-          <div className="xl:h-[80dvh] p-24 flex xl:w-[73%] justify-around items-center">
-            <div className="w-[50%] mr-5 py-20 px-5">
-              <div className="mb-6 flex flex-col justify-center items-center">
-                <h2 className="text-7xl font-bold">
+          <div className="xl:h-[80dvh] h-[105dvh] pt-20 p-5 xl:p-24 flex xl:w-[73%] justify-around lg:flex-row flex-col items-center">
+
+            <div className="  w-full lg:w-[50%] lg:mr-5 lg:py-20 pt-20 pb-16  px-2 lg:px-5">
+              <div className="mb-6 flex flex-col justify-center text-center lg:text-left items-center">
+                <h2 className=" text-5xl mb-2 lg:mb-0 xl:text-7xl font-bold">
                   Are You Among the <span className="text-blue-600">Top 1%?</span>
                 </h2>
-                <p className="text-xl mt-1">
+                <p className=" text-lg  lg:text-xl mt-1">
                   Discover your intellectual capabilities with UniRank. Take our scientifically designed IQ tests,
                 </p>
               </div>
-              <div>
+              <div className="  flex  lg:justify-start justify-center " >
                 <GetStartedButton session={session} />
               </div>
             </div>
-            <div className="w-[50%] h-full flex justify-center items-center p-2">
-              <motion.div
-                className="relative w-full xl:h-[25%] -mb-20 flex flex-col justify-end items-end">
+
+            <div className=" w-full lg:w-[50%] h-full flex justify-center items-center p-2">
+              <motion.div className="relative w-full h-[60%] lg:h-[25%] -mb-20 flex flex-col justify-end items-end">
                 <AnimatePresence key={shuffleKey}>
                   {leaderboard.map((item, index) => (
                     <motion.div
@@ -135,8 +147,9 @@ export default function Home() {
                       initial="initial"
                       animate="animate"
                       exit="exit"
-                      className={`p-4 absolute shadow-sm  duration-200 bg-white  border rounded-xl flex w-full justify-around items-center ${index === 0 ? "scale-[1.4] left-[4rem] bottom-[100%]  " :
-                        index === 1 ? "scale-[22] left-[2rem]  bottom-[50%] " :
+                      className={`  p-3 lg:p-4 absolute shadow-sm  duration-200 lg:text-base text-sm bg-white  border rounded-xl flex w-full justify-around items-center 
+                        ${index === 0 ? `scale-[1.4]  ${isMobile ? " left-[1rem]  " : " left-[4rem]  "} bottom-[100%]  ` :
+                        index === 1 ? `scale-[22] ${isMobile ? " left-[0.5rem]  " : " left-[2rem]  " }  bottom-[50%] `:
                           "scale-[1.1]  bottom-0 "
                         }`}
                     >
