@@ -3,6 +3,7 @@
 import React from 'react'
 import GetStartedButton from './btn/GetStartedButton'
 import { useSession } from 'next-auth/react'
+import Image from 'next/image'
 
 const Nav = () => {
 
@@ -13,8 +14,8 @@ const Nav = () => {
       <div className=' xl:w-[40%] lg:w-[50%] w-full bg-white z-[70]  p-2 border rounded-xl flex justify-between items-center  ' >
         
         <div className="w-1/3 flex   ">
-          <div className=' rounded-lg min-w-12 min-h-12 text-center bg-blue-300 ' >
-            logo
+          <div className=' rounded-lg min-w-12 min-h-12 text-center object-cover relative ' >
+            <Image src={"/uniranklogo.png"} fill={true} alt="logo" />
           </div>
         </div>
 

@@ -18,6 +18,7 @@ import Features from "@/components/landing/Features";
 import Faqs from "@/components/landing/Faqs";
 import CTA from "@/components/landing/CTA";
 import Footerr from "@/components/landing/Footerr";
+import Featurestwo from "@/components/landing/Featurestwo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -120,7 +121,7 @@ export default function Home() {
       <main className="flex w-full min-h-screen  flex-col items-center justify-between ">
 
         <section className=" flex flex-col overflow-x-hidden justify-center items-center h-full w-full " >
-          <div className="xl:h-[80dvh] h-[105dvh] pt-20 p-5 xl:p-24 flex xl:w-[73%] justify-around lg:flex-row flex-col items-center">
+          <div className="xl:h-[80dvh] md:h-[90dvh] h-[105dvh] pt-20 p-5 xl:p-24 flex xl:w-[73%] justify-around lg:flex-row flex-col items-center">
 
             <div className="  w-full lg:w-[50%] lg:mr-5 lg:py-20 pt-20 pb-16  px-2 lg:px-5">
               <div className="mb-6 flex flex-col justify-center text-center lg:text-left items-center">
@@ -191,21 +192,25 @@ export default function Home() {
         </section>
 
 
-        <section className="p-24 z-10 " >
+        <section className=" p-3 xl:p-24 z-10 " >
           <Problem />
         </section>
 
+        <section className=" w-full h-[150vh] md:h-[180vh] xl:h-[200vh] z-10  " >
+          <Featurestwo/>
+        </section>
 
-        <section style={{display: "unset"}} >
-          <section className=" sticky top-0  w-full " >
+
+        {/* <section style={{display: "unset"}} >
+          <section className=" sticky top-0  w-full " > */}
             {/* <div className="bg-red-500  p-10 w-full ">
               hello
             </div> */}
             {/* <Features /> */}
-          </section>
-        </section>
+          {/* </section>
+        </section> */}
 
-        <section className=" w-full z-10  " >
+        <section className="w-full z-10  " >
           <Faqs />
         </section>
         <section className=" w-full z-10  " >
