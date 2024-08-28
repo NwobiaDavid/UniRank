@@ -7,13 +7,23 @@ const page = () => {
     const rules = [
         {
             id: 1,
-            header: " some of the header ",
-            body: " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, quos ut quasi, consectetur assumenda dignissimos saepe est excepturi minima ipsam earum vitae nesciunt molestiae et, quaerat accusantium? Aspernatur, quisquam cum?"
+            header: "No Inspect Element Tab Access ",
+            body: "Do not open the Inspect Element tab during the test. Accessing this feature will automatically submit your answers, and any manipulation or inspection of the test interface will be detected and result in immediate disqualification."
         },
         {
             id: 2,
-            header: " some of the header ",
-            body: " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio, quos ut quasi, consectetur assumenda dignissimos saepe est excepturi minima ipsam earum vitae nesciunt molestiae et, quaerat accusantium? Aspernatur, quisquam cum?"
+            header: "20-Second Time Limit per Question",
+            body: "Each question has a strict 20-second time limit. Make sure to read and answer each question within this timeframe. If you exceed the limit, your answer will be automatically submitted, and you may not have the chance to return to the question."
+        },
+        {
+            id: 3,
+            header: "No External Help or Resources",
+            body: "You must complete the test independently without using external resources or assistance. Any attempt to use outside help, including online resources or collaboration with others, will result in disqualification."
+        },
+        {
+            id: 4,
+            header: "Maintain a Distraction-Free Environment",
+            body: "Ensure you are in a quiet, distraction-free environment while taking the test. Disruptions or interruptions may affect your performance and could lead to a lower score."
         },
     ]
     return (

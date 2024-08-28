@@ -41,7 +41,7 @@ export default function About() {
     <div className="w-full mainsec overflow-hidden h-[60dvh] relative">
       <div className="w-full text-opacity-100 text-center h-full justify-center items-center flex">
         <p ref={textRef} className=" w-[90%] xl:w-[50%] z-[90] text-lg xl:text-2xl font-semibold xl:font-bold text-center">
-          Many students are unaware of their intellectual strengths and weaknesses. Traditional IQ tests are often inaccessible, costly, or not engaging enough. Without a way to measure and compare their cognitive abilities, students miss out on opportunities for self-improvement and academic growth.
+        Unirank is dedicated to empowering students, parents, and educators by providing transparent, data-driven rankings of Nigerian universities based on student IQ. We aim to foster informed decisions, promote academic excellence, and elevate the standards of higher education across the nation.
         </p>
       </div>
       {/* <div

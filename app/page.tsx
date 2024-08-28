@@ -129,7 +129,7 @@ export default function Home() {
                   Are You Among the <span className="text-blue-600">Top 1%?</span>
                 </h2>
                 <p className=" text-lg  lg:text-xl mt-1">
-                  Discover your intellectual capabilities with UniRank. Take our scientifically designed IQ tests,
+                Discover the Universities Producing Nigeria's Brightest Minds – See Where Your Alma Mater Stands Today.
                 </p>
               </div>
               <div className="  flex  lg:justify-start justify-center " >
@@ -137,7 +137,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className=" w-full lg:w-[50%] h-full flex justify-center items-center p-2">
+            <div className=" w-full md:w-[60%] lg:w-[50%] h-full flex justify-center items-center p-2">
               <motion.div className="relative w-full h-[60%] lg:h-[25%] -mb-20 flex flex-col justify-end items-end">
                 <AnimatePresence key={shuffleKey}>
                   {leaderboard.map((item, index) => (

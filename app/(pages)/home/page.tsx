@@ -121,9 +121,9 @@ const Page: React.FC = () => {
           </div>
 
           <div className='w-full'>
-            <h1 className="text-base xl:text-lg">Welcome to the UniRank! Here are a few things to keep in mind before you start:</h1>
-            <h1 className="text-base xl:text-lg">It is advisable to read through the rules before you take the test.</h1>
-            <h1 className="text-base xl:text-lg">Good luck, and give it your best shot!</h1>
+            <h1 className="text-base xl:text-lg"> Welcome to UniRank! Before you begin, please review the rules to ensure a smooth testing experience. Best of luck—give it your all and make the most of this opportunity!</h1>
+            {/* <h1 className="text-base xl:text-lg">It is advisable to read through the rules before you take the test.</h1>
+            <h1 className="text-base xl:text-lg">Good luck, and give it your best shot!</h1> */}
           </div>
         </div>
 
